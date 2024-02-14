@@ -1,0 +1,31 @@
+package com.abler.dto;
+
+import com.abler.domain.subBook.SubBook;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Getter
+@NoArgsConstructor
+public class SubBookSaveDTO {
+    private UUID id;
+    private LocalDateTime datetime;
+    private Long userId;
+    private Long bookId;
+
+    @Builder
+    public SubBookSaveDTO(Long userId, Long bookId){
+        this.userId = userId;
+        this.bookId = bookId;
+    }
+
+    public SubBook toEntity(){
+        return SubBook.builder()
+                .datetime(LocalDateTime.now())
+                .userId(userId)
+                .bookId(bookId)
+                .build();
+    }
+}
